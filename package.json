@@ -1,0 +1,23 @@
+{
+   "name": "tweet-app",
+   "version": "0.0.1",
+   "description": "Awesome project developed with TypeORM.",
+   "devDependencies": {
+      "ts-node": "3.3.0",
+      "@types/node": "^8.0.29",
+      "typescript": "3.3.3333"
+   },
+   "dependencies": {
+      "body-parser": "^1.18.1",
+      "class-validator": "^0.12.2",
+      "express": "^4.15.4",
+      "inversify": "^5.0.1",
+      "mysql": "^2.14.1",
+      "reflect-metadata": "^0.1.13",
+      "typeorm": "0.2.29"
+   },
+   "scripts": {
+      "start": "nodemon src/index.ts",
+      "attempt": "node_modules/.bin/ts-node attempt.ts"
+   }
+}
