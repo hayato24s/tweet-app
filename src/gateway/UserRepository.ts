@@ -1,9 +1,8 @@
 import { getRepository, Repository } from "typeorm";
-import { validate, validateOrReject, ValidationError } from "class-validator";
+import { validate, ValidationError } from "class-validator";
 import { injectable } from "inversify";
 import { User } from "../entity/User";
 import { IUserRepository } from "../repository/IUserRepository";
-import { resolve } from "url";
 
 
 
@@ -12,7 +11,7 @@ export class UserRepository implements IUserRepository {
 
     userRepository: Repository<User> = getRepository(User);
 
-    findAllUser(): Promise<User[]> {
+    async findUsers(): Promise<User[]> {
         return this.userRepository.find();
     }
 
@@ -23,7 +22,7 @@ export class UserRepository implements IUserRepository {
     }
 
     
-    createUser(data: {name: string, email: string, password: string}): Promise<User> {
+    async createUser(data: {name: string, email: string, password: string}): Promise<User> {
         return new Promise(async (resolve, reject) => {
             const user = new User();
             Object.keys(data).forEach((key) => {
@@ -66,6 +65,6 @@ export class UserRepository implements IUserRepository {
         await this.userRepository.remove(user).catch((err) => {
             Promise.reject(err);
         })
-        return this.findAllUser();
+        return this.findUsers();
     }
 }

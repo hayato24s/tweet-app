@@ -1,5 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, JoinColumn, Unique, } from "typeorm";
-import { IsEmail, Length, MaxLength, MinLength } from "class-validator";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, Unique, } from "typeorm";
+import { IsEmail, Length } from "class-validator";
 import { Post } from "./Post"
 
 @Entity()

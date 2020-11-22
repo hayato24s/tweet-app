@@ -1,20 +1,10 @@
-import {getRepository} from "typeorm";
 import {NextFunction, Request, Response} from "express";
 import {Post} from "../entity/Post";
-import { request } from "http";
-import { PostInteractor } from "../interactor/PostInteractor";
 import { IPostUseCase } from "../usecase/PostUseCase";
 import { inject, injectable } from "inversify";
 
 @injectable()
 export class PostController {
-
-    /*
-    private PostRepository = getRepository(Post);
-    async one(req: Request, res: Response, next: NextFunction) {
-        return this.PostRepository.findOne(req.params.id);
-    }
-    */
 
     readonly postInteractor: IPostUseCase;
 
@@ -44,20 +34,20 @@ export class PostController {
     }
 
 
-    findPosts(req: Request): Promise<Post[]> {
+    async findPosts(req: Request): Promise<Post[]> {
         return this.postInteractor.findPosts();
     }
 
-    findPostById(req: Request): Promise<Post> {
+    async findPostById(req: Request): Promise<Post> {
         return this.postInteractor.findPostById(req.params.id);
     }
 
-    createPost(req: Request): Promise<Post> {
+    async createPost(req: Request): Promise<Post> {
         if (! this.isPost(req.body)) return Promise.reject("入力データが正しくありません。");
         else return this.postInteractor.createPost(req.body);
     }
 
-    deletePost(req: Request): Promise<Post[]> {
+    async deletePost(req: Request): Promise<Post[]> {
         return this.postInteractor.deletePost(req.params.id);
     }
 }

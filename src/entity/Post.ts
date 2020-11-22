@@ -1,5 +1,5 @@
 import { Length } from "class-validator";
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn} from  "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn } from  "typeorm";
 import {User} from "./User";
 
 @Entity()

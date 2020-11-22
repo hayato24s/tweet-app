@@ -2,7 +2,6 @@ import { inject, injectable } from "inversify";
 import { User } from "../entity/User";
 import { IUserUseCase } from "../usecase/UserUseCase";
 import { IUserRepository } from "../repository/IUserRepository";
-import { ValidationError } from "class-validator";
 
 @injectable()
 export class UserInteractor implements IUserUseCase {
@@ -11,8 +10,8 @@ export class UserInteractor implements IUserUseCase {
     constructor(@inject("UserRepository") userRepository: IUserRepository) {
         this.userRepository = userRepository;
     }
-    findAllUser(): Promise<User[]> {
-        return this.userRepository.findAllUser();
+    findUsers(): Promise<User[]> {
+        return this.userRepository.findUsers();
     }
     findUserByName(name: string): Promise<User> {
         return this.userRepository.findUserByName(name);

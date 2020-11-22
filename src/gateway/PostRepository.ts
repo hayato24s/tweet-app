@@ -3,8 +3,7 @@ import { IPostRepository } from "../repository/IPostRepository";
 import { Post } from "../entity/Post";
 import { Repository } from "typeorm";
 import { inject, injectable } from "inversify";
-import { resolve } from "url";
-import { validate, validateOrReject, ValidationError } from "class-validator";
+import { validate, ValidationError } from "class-validator";
 
 @injectable()
 export class PostRepository implements IPostRepository {
@@ -43,7 +42,7 @@ export class PostRepository implements IPostRepository {
     }
 
     async deletePost(id: string): Promise<Post[]> {
-        const post = await this.findPostById(id); // async処理の場合はrejectが出た瞬間にreturnされる。
+        const post = await this.findPostById(id);
         await this.postRepository.remove(post).catch((err) => {
             Promise.reject(err);
         })
